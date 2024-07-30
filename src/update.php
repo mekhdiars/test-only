@@ -30,7 +30,6 @@ require_once 'db-connect.php';
 $stmtUser = $pdo->prepare("SELECT * FROM users WHERE username = :login");
 $stmtUser->execute([':login' => $login]);
 $currentUser = $stmtUser->fetch(PDO::FETCH_OBJ);
-echo '<pre>' . print_r($currentUser, true) . '</pre>';
 
 $stmtUsers = $pdo->query("SELECT * FROM users");
 $users = $stmtUsers->fetchAll(PDO::FETCH_OBJ);
