@@ -2,9 +2,11 @@
     if (!isset($_COOKIE['login'])) {
         header('Location: /');
     }
+
+    session_start();
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,6 +33,13 @@
             <button type="submit">Сохранить</button>
         </form>
     </div>
+
+    <p class="message">
+        <?php
+            echo $_SESSION['message'] ?? '';
+            unset($_SESSION['message']);
+        ?>
+    </p>
 
     <form action="/src/exit.php" method="post">
         <button type="submit" id="exit-user">Выйти</button>

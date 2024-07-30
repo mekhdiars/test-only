@@ -1,5 +1,14 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
+=======
+<?php
+    session_start();
+?>
+
+<!DOCTYPE html>
+<html lang="ru">
+>>>>>>> d47b5ba (add functionality and optimize work with the database)
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,13 +33,27 @@
                     <input type="password" name="password">
 
                 <label for="confirmation-password">Подтверждение пароля</label>
+<<<<<<< HEAD
                     <input type="password" name="confirmation-password">
+=======
+                    <input type="password" name="password-confirm">
+>>>>>>> d47b5ba (add functionality and optimize work with the database)
 
                 <button type="submit">Продолжить</button>
             </form>
 
             <p>У меня уже есть <a href="/">аккаунт</a></p>
         </div>
+<<<<<<< HEAD
+=======
+
+        <p class="message">
+            <?php
+                echo $_SESSION['message'] ?? '';
+                unset($_SESSION['message']);
+            ?>
+        </p>
+>>>>>>> d47b5ba (add functionality and optimize work with the database)
     </main>
 </body>
 </html>

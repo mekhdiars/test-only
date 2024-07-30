@@ -2,9 +2,11 @@
     if (isset($_COOKIE['login'])) {
         header('Location: profile.php');
     }
+
+    session_start();
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     <meta charset="UTF-8">
@@ -33,6 +35,13 @@
             </form>
             <p>У меня еще нет <a href="/register.php">аккаунта</a></p>
         </div>
+
+        <p class="message">
+            <?php
+                echo $_SESSION['message'] ?? '';
+                unset($_SESSION['message']);
+            ?>
+        </p>
     </main>
 
     <script>

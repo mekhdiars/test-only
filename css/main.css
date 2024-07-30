@@ -1,5 +1,11 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    margin-top: 100px;
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -7,13 +13,14 @@ body {
 }
 
 div.form {
-    width: 350px;
+    width: 400px;
     border: 1px solid rgb(72, 72, 72);
+    border-radius: 2px;
     background-color: rgb(255, 250, 244);
 }
 
 h1 {
-    margin-left: 30px;
+    margin: 20px 30px;
 }
 
 form {
@@ -27,7 +34,7 @@ form label {
 }
 
 form input {
-    width: 250px;
+    width: 100%;
     border: 1px solid silver;
     border-radius: 2px;
     padding: 10px 15px;
@@ -36,7 +43,7 @@ form input {
 }
 
 form button {
-    margin-top: 15px;
+    margin-top: 10px;
     padding: 10px;
     font-size: 14px;
     border: 1px;
@@ -49,10 +56,25 @@ div p {
     margin: 30px;
 }
 
+a {
+    font-weight: bold;
+}
+
+h2 {
+    margin-bottom: 10px;
+}
+
 div.form h3 {
     margin: 20px;
 }
 
 form button#exit-user {
     background-color: red;
+    margin: 0px;
+}
+
+p.message {
+    color: red;
+    margin-top: 10px;
+    text-align: center;
 }

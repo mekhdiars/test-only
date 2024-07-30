@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 define('SMARTCAPTCHA_SERVER_KEY', 'ysc2_tpp19lWgUa2qeL80d5t5ATV16yausb0PK8SzWvf0fc29dd64');
 
 function check_captcha($token) {
@@ -36,34 +38,33 @@ $password = trim(filter_var($_POST['password'], FILTER_SANITIZE_SPECIAL_CHARS));
 
 $error = '';
 if ($login === '') {
-    $error = 'Введите корректные данные';
+    $error = 'Введите номер или почту';
 } elseif ($password === '') {
     $error = 'Введите пароль';
 }
 
 if ($error !== '') {
-    echo $error;
-    echo '<p><a href="/login.php">Вернуться</a> на страницу авторизации</p>';
+    $_SESSION['message'] = $error;
+    header('Location: /');
     exit();
 }
 
-$userDb = 'root';
-$passwordDb = 'root';
-$db = 'testing';
-$host = 'localhost';
-$port = 8889;
-
-$dsn = "mysql:host={$host};dbname={$db};port={$port}";
-$pdo = new PDO($dsn, $userDb, $passwordDb);
+require_once 'db-connect.php';
 
 $password = md5($password);
-$stmt = $pdo->prepare("SELECT * FROM users WHERE phone = :phone OR email = :email AND password = :password");
-$stmt->execute([':phone' => $login, ':email' => $login, ':password' => $password]);
-$user = $stmt->fetch(PDO::FETCH_OBJ);
+$stmtUser = $pdo->prepare("SELECT * FROM users WHERE phone = :phone OR email = :email");
+$stmtUser->execute([':phone' => $login, ':email' => $login]);
+$user = $stmtUser->fetch(PDO::FETCH_OBJ);
 
-if (!isset($user->id)) {
-    echo '<br>';
-    echo 'Такого пользователя не существует';
+if ($login !== $user->phone && $login !== $user->email) {
+    $error = 'Пользователя c таким логином не существует';
+} elseif ($password !== $user->password) {
+    $error = 'Неверный пароль';
+}
+
+if ($error !== '') {
+    $_SESSION['message'] = $error;
+    header('Location: /');
 } else {
     setcookie('login', $user->username, time() + 3600 * 24, '/');
     header('Location: /profile.php');
