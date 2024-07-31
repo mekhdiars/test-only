@@ -28,7 +28,7 @@
                 <input type="password" name="password">
 
                 <div id="captcha-container" class="smart-captcha" data-sitekey="ysc1_tpp19lWgUa2qeL80d5t5iTdyK5cWU9Ir8lnNGYlbea769358" style="height: 100px">
-                    <input type="hidden" name="smart-token" value="">
+                    <input type="hidden" name="smart-token" id="smart-token" value="">
                 </div>
 
                 <button type="submit">Войти</button>

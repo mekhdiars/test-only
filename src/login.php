@@ -27,10 +27,10 @@ function check_captcha($token) {
 }
 
 $token = $_POST['smart-token'];
-if (check_captcha($token)) {
-    echo "Passed\n";
-} else {
-    echo "Robot\n";
+if (!check_captcha($token)) {
+    $_SESSION['message'] = "Пожалуйста, пройдите проверку Captcha";
+    header('Location: /');
+    exit();
 }
 
 $login = trim(filter_var($_POST['login'], FILTER_SANITIZE_SPECIAL_CHARS));
